@@ -1,0 +1,38 @@
+<div class="header">
+    <button mat-button>
+      <mat-icon class="header-icon" (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+</div>
+<div class="main-container">
+
+  <!-- sidebar -->
+  <mat-sidenav-container class="main-container">
+  <mat-sidenav #sidenav [mode]="mode.value" class="sidebar-container">
+    <sidebar (leftItemSelected)="onItemSelected($event)" (leftSubItemSelected)=(onSubItemSelected($event))></sidebar>
+  </mat-sidenav>
+
+  <!-- main view -->
+
+  <mat-sidenav-content class="main-view-container" >
+      <h1 *ngIf="!subSelected">{{selectedItem.title}}</h1>
+      <h1 *ngIf="subSelected">{{selectedSubItem.title}}</h1>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+</div>
+
+<!-- music button -->
+
+<div class="player">
+    <button mat-button>
+      <mat-icon class="header-icon" (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+</div>
+
+
+<!-- <div *ngIf="!shouldRun">Please open on Stackblitz to see result</div> -->
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

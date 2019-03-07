@@ -1,0 +1,44 @@
+.main-container{
+  position:relative;
+  height:91vh;
+}
+
+.main-view-container{
+  /* position: relative; */
+  background-color:gray;
+}
+
+.header-icon{
+  padding:2%;
+  color:#ffffff;
+}
+
+.sidebar-container{
+  background-color:black;
+  width:230px;
+  display:block;
+}
+
+.sidebar-main-text{
+  color:white;
+  display:block;
+  margin:auto;
+}
+
+.sidebar-divider{
+  color:darkgray;
+  background-color:darkgray;
+  /* display:block; */
+  margin:auto;
+  height:1px;
+  width: 80%;
+}
+
+
+
+/* .example-radio-group {
+  display: block;
+  border: 1px solid #555;
+  margin: 20px;
+  padding: 10px;
+} */

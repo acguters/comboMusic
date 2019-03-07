@@ -1,0 +1,20 @@
+
+<mat-nav-list>
+  <div *ngFor="let item of leftItems;index as i;">
+    <mat-list-item >
+      <button class="mainItem" mat-button (click)=toggleSelected(i)>
+        <h2 class="sidebar-main-text">{{item.title}}</h2>
+      </button>
+    </mat-list-item>
+    <mat-nav-list *ngIf="item.isSelected">
+      <mat-list-item *ngFor="let subitem of item.subitems;index as j"
+      style="margin-top: -10px; margin-left:20px;">
+      <!-- style="margin-left:20px;margin-top:-20px;"> -->
+        <button class="subItem" mat-button (click)=toggleSelectedSub(j)>
+          <h4 class="sidebar-subtext" >{{subitem.title}}</h4>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+</mat-nav-list>
+
