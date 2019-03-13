@@ -6,7 +6,7 @@
         <h2 class="sidebar-main-text">{{item.title}}</h2>
       </button>
     </mat-list-item>
-    <mat-nav-list *ngIf="item.isSelected">
+    <mat-nav-list *ngIf="item.isSelected && item.subitems.length!=0">
       <mat-list-item *ngFor="let subitem of item.subitems;index as j"
       style="margin-top: -10px; margin-left:20px;">
       <!-- style="margin-left:20px;margin-top:-20px;"> -->

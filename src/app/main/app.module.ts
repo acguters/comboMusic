@@ -1,3 +1,6 @@
+import { TrackSearchComponent } from './../track-search/track-search.component';
+import { HomeComponent } from '../home/home.component';
+import { SearchComponent } from '../search/search.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {DemoMaterialModule} from '../../material-module';
@@ -8,11 +11,22 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import {HttpModule} from '@angular/http';
+import { SpotifyService } from '../services/spotify.services';
+import { SearchResultComponent } from '../search-result/search-result.component';
+import { AlbumSearchComponent } from '../album-search/album-search.component';
+import { PlaylistSearchComponent } from '../playlist-search/playlist-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchComponent,
+    HomeComponent,
+    SearchResultComponent,
+    TrackSearchComponent,
+    AlbumSearchComponent,
+    PlaylistSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -22,8 +36,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     DemoMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [SpotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

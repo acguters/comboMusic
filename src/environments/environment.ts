@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  clientId: 'd900fe3c74af46f49f4bdc6dc0644c55',
+  clientSecret: '1db33f3eaeb549129896e3e86236cff0',
+  soundcloudId: '86b6a66bb2d863f5d64dd8a91cd8de94'
 };
 
 /*

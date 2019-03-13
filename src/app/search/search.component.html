@@ -1,0 +1,63 @@
+
+
+<form action="" class="searchbar">
+  <!-- <div> -->
+    <input type="text" [formControl]="query" placeholder="Search {{currentSelected}} ..."
+    class="inputField">
+  <!-- </div> -->
+</form>
+
+<div class="selectors">
+  <!-- artists, albums, genres, tracks, playlists -->
+  <div *ngFor="let selector of selectors;index as i;" style="display:inline-block;">
+    <div *ngIf="selector.isSelected;else notSelected;"  class="selector"
+    style="background-color:white; color:#191414" >
+      {{selector.name}}
+    </div>
+    <ng-template #notSelected>
+      <div class="selector" (click)="toggleSelected(i)">
+        {{selector.name}}
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+
+<div class="resultContainer" *ngIf="currentSelected==='Artists'" >
+    <app-search-result *ngFor="let artist of artistResults"
+    [artistRes]="artist"></app-search-result>
+</div>
+<div class="resultContainer" *ngIf="currentSelected==='Artists'">
+  <app-search-result *ngFor="let artist of soundCloudArtists"
+  [soundcloudArtist]="artist"></app-search-result>
+</div>
+
+<div class="resultContainer" *ngIf="currentSelected==='Tracks'" >
+    <app-track-search *ngFor="let track of spotifyTracks"
+    [spotifyTrack]="track"></app-track-search>
+</div>
+<div class="resultContainer" *ngIf="currentSelected==='Tracks'">
+  <app-track-search *ngFor="let track of soundCloudTracks"
+  [soundCloudTrack]="track"></app-track-search>
+</div>
+
+<div class="resultContainer" *ngIf="currentSelected==='Albums'" >
+    <app-album-search *ngFor="let album of spotifyAlbums"
+    [spotifyAlbum]="album"></app-album-search>
+</div>
+<div class="resultContainer" *ngIf="currentSelected==='Albums'">
+  <app-album-search *ngFor="let playlist of soundCloudAlbums"
+  [soundCloudPlaylist]="playlist"></app-album-search>
+</div>
+
+<div class="resultContainer" *ngIf="currentSelected==='Playlists'" >
+    <app-playlist-search *ngFor="let playlist of spotifyPlaylists"
+    [spotifyPlaylist]="playlist"></app-playlist-search>
+</div>
+<div class="resultContainer" *ngIf="currentSelected==='Playlists'">
+  <app-playlist-search *ngFor="let playlist of soundCloudPlaylists"
+  [soundCloudPlaylist]="playlist"></app-playlist-search>
+</div>
+
+
+<!-- <app-search-result ></app-search-result> -->

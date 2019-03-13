@@ -1,0 +1,67 @@
+<div class="trackContainer" *ngIf="spotifyTrack" >
+  <!-- <div class="imageContainer"> -->
+      <img src="{{spotifyTrack.album.images[0].url}}" class="image"
+    *ngIf="spotifyTrack.album.images && spotifyTrack.album.images[0].url; else noImage">
+    <ng-template #noImage>
+        <img src="" class="image">
+    </ng-template>
+  <!-- </div> -->
+  <div class="detailsContainer">
+    <div class="topDetails">
+      <h4 style="margin-top:10px;padding:0;color:white;">{{spotifyTrack.name}} : {{spotifyTrack.artists[0].name}}</h4>
+      <!-- <div class="details" style="background-color:#262627" *ngIf="spotifyTrack.explicit" >
+          <p class="innerdetails">Explicit</p>
+      </div> -->
+    </div>
+    <div class="bottomDetails">
+      <img src="../../assets/icons/spotify_icon.png" class="icon" style="margin-right:5px;">
+        <div class="details" style="background-color:#262627" *ngIf="spotifyTrack.explicit" >
+            <p class="innerdetails">Explicit</p>
+        </div>
+      <div class="details" style="background-color:#1ED760" *ngIf="spotifyTrack.album" >
+        <p class="innerdetails">{{spotifyTrack.album.name}}</p>
+      </div>
+      <div class="details" style="background-color:#0179CC">
+        <p class="innerdetails">{{msToS(spotifyTrack.duration_ms)}}</p>
+      </div>
+      <!-- <div class="popularityBack">
+        <div id="popularityBar" style="width:var(--wid)"></div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div class="trackContainer" *ngIf="soundCloudTrack" >
+    <!-- <div class="imageContainer"> -->
+        <img src="{{soundCloudTrack.artwork_url}}" class="image"
+      *ngIf="soundCloudTrack.artwork_url; else noImage">
+      <ng-template #noImage>
+          <img src="" class="image">
+      </ng-template>
+    <!-- </div> -->
+    <div class="detailsContainer">
+      <div class="topDetails">
+        <h4 style="margin-top:10px;padding:0;color:white;">{{soundCloudTrack.title}} : {{soundCloudTrack.user.username}}</h4>
+        <!-- <div class="details" style="background-color:#262627" *ngIf="spotifyTrack.explicit" >
+            <p class="innerdetails">Explicit</p>
+        </div> -->
+      </div>
+      <div class="bottomDetails">
+          <img src="../../assets/icons/soundcloud_icon.png" class="icon">
+          <!-- <div class="details" style="background-color:#262627" *ngIf="spotifyTrack.explicit" >
+              <p class="innerdetails">Explicit</p>
+          </div> -->
+        <!-- <div class="details" style="background-color:#1ED760" *ngIf="spotifyTrack.album" >
+          <p class="innerdetails">{{spotifyTrack.album.name}}</p>
+        </div> -->
+        <div class="details" style="background-color:#0179CC">
+          <p class="innerdetails">{{msToS(soundCloudTrack.duration)}}</p>
+        </div>
+        <!-- <div class="popularityBack">
+          <div id="popularityBar" style="width:var(--wid)"></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+

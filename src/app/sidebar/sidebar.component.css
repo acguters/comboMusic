@@ -59,6 +59,7 @@ mat-list-item {
 
 button h2{
   display:absolute;
+  outline: none;
   /* background-color:green; */
   top:50%;
   transform: translate(0, -40%);
@@ -67,6 +68,7 @@ button h2{
 
 button h4{
   /* margin-left:10px; */
+
   height:30px;
   display:absolute;
   /* background-color:blue; */

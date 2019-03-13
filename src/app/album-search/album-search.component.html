@@ -1,0 +1,29 @@
+
+<div class="searchContainer" *ngIf="spotifyAlbum; else soundCloud;" >
+    <img src="{{spotifyAlbum.images[0].url}}"
+    *ngIf="spotifyAlbum.images.length!=0;else noArtist;" class="image" >
+    <ng-template #noArtist>
+      <div #noArtist class="image"></div>
+    </ng-template>
+    <div class="company">
+      <img src="../../assets/icons/spotify.png" class="icon">
+    </div>
+    <h4 layout="row" layout-align="center center">{{spotifyAlbum.name}}</h4>
+    <p class="datetrack"> {{spotifyAlbum.release_date}} &#183; {{spotifyAlbum.total_tracks}} Tracks</p>
+</div>
+
+<ng-template #soundCloud>
+  <div class="searchContainer" style="background-color:white" >
+  <img src="{{soundCloudPlaylist.artwork_url}}"
+  *ngIf="soundCloudPlaylist.artwork_url;else noArtist;" class="image" >
+  <ng-template #noArtist>
+    <img src="../../assets/icons/generic_user.jpg" class="image">
+  </ng-template>
+  <div class="company">
+    <img src="../../assets/icons/soundcloud.png" class="icon">
+  </div>
+  <h4 layout="row" layout-align="center center" style="color:black">{{soundCloudPlaylist.user.username}}</h4>
+  <p class="datetrack" style="color:black"> {{date(soundCloudPlaylist.created_at)}} &#183; {{soundCloudPlaylist.track_count}} Tracks</p>
+</div>
+</ng-template>
+
