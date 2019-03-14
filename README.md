@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+##if that's too confusing to run, tbh just use the actions below
+
+-Download the zip file or clone repo on desktop
+-Angular requires Node.js, so you need to download that as well(https://nodejs.org/en/)
+-Optional: I used Visual Studio Code to create this project
+-go to project folder and run the following commands:
+  -'npm install' (installs necessary files for angular)
+  -after it is installed, run 'npm start' to start the server
+  -host is localhost:4200
+-NOTE: You will need a spotify account in order to run this app

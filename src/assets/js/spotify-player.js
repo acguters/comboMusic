@@ -1,5 +1,11 @@
 // Get the hash of the url
-function setUpPlayer(){
+
+var deviceId;
+var acc_token;
+var player;
+
+function setUpSpotifyPlayer(){
+  // localStorage.setItem('spotifyToken',token);
   const hash = window.location.hash
   .substring(1)
   .split('&')
@@ -13,13 +19,23 @@ function setUpPlayer(){
   window.location.hash = '';
 
   // Set token
-  let _token = hash.access_token;
+  var _token;
+  // if(localStorage.getItem('spotifyToken') === 'undefined')
+  //   localStorage.setItem('spotifyToken', hash.access_token);
+  // if(localStorage.getItem('spotifyToken')!=='undefined')
+  // {
+  //   console.log('localStorage : ' + localStorage.getItem('spotifyToken'));
+  //   _token=localStorage.getItem('spotifyToken');
+  //   console.log('_TOKEN ; ' + _token);
+  // } else {
+    _token = hash.access_token;
+  // }
 
   const authEndpoint = 'https://accounts.spotify.com/authorize';
 
   // Replace with your app's client ID, redirect URI and desired scopes
-  const clientId = '2102d6bf57714410a8f50dd1ccadc571';
-  const redirectUri = 'https://spotify-web-playback.glitch.me';
+  const clientId = 'd900fe3c74af46f49f4bdc6dc0644c55';
+  const redirectUri = 'http://localhost:4200/callback';
   const scopes = [
     'streaming',
     'user-read-birthdate',
@@ -29,13 +45,19 @@ function setUpPlayer(){
 
   // If there is no token, redirect to Spotify authorization
   if (!_token) {
+    // alert(localStorage.getItem('spotifyToken'));
     window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
   }
 
   // Set up the Web Playback SDK
 
   window.onSpotifyPlayerAPIReady = () => {
-    const player = new Spotify.Player({
+    // _token = localStorage.geItem('spotifyToken');
+    console.log('token:' + _token);
+    console.log('REFRESH TOKEN?' + JSON.stringify(hash));
+    // localStorage.setItem('spotifyToken',_token);
+    console.log('TOKENTOKEN' + localStorage.getItem('spotifyToken'));
+    player = new Spotify.Player({
       name: 'Web Playback SDK Template',
       getOAuthToken: cb => { cb(_token); }
     });
@@ -56,9 +78,10 @@ function setUpPlayer(){
     // Ready
     player.on('ready', data => {
       console.log('Ready with Device ID', data.device_id);
-
+      deviceId=data.device_id;
+      acc_token=_token;
       // Play a track using our new device ID
-      play(data.device_id);
+      // play(deviceId,_token);
     });
 
     // Connect to the player!
@@ -67,15 +90,27 @@ function setUpPlayer(){
 }
 
 // Play a specified track on the Web Playback SDK's device ID
-function play(device_id) {
+function playSpotify(uri) {
   console.log('playing');
+  // console.log('token:' + _token);
+  console.log('uri'+uri);
   $.ajax({
-   url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
+   url: "https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
    type: "PUT",
-   data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
-   beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+   data: '{"uris": ["'+uri+'"]}',
+   beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + acc_token );},
    success: function(data) {
      console.log(data)
    }
   });
+
+
 }
+function pauseSpotify(){
+  player.pause();
+}
+
+function resumeSpotify(){
+  player.resume();
+}
+
