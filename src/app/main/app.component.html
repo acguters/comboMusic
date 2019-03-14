@@ -3,7 +3,7 @@
       <mat-icon class="header-icon" (click)="sidenav.toggle()">menu</mat-icon>
     </button>
 </div>
-<div class="main-container">
+<!-- <div class="main-container"> -->
 
   <!-- sidebar -->
   <mat-sidenav-container class="main-container">
@@ -20,15 +20,11 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-</div>
+<!-- </div> -->
 
 <!-- music button -->
 
-<div class="player">
-    <button mat-button>
-      <mat-icon class="header-icon" (click)="sidenav.toggle()">menu</mat-icon>
-    </button>
-</div>
+<app-player class="musicPlayer"></app-player>
 
 
 <!-- <div *ngIf="!shouldRun">Please open on Stackblitz to see result</div> -->

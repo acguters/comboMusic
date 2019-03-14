@@ -1,4 +1,4 @@
-<div class="trackContainer" *ngIf="spotifyTrack" >
+<div class="trackContainer" *ngIf="spotifyTrack" (dblclick)="playSpotifyTrack()">
   <!-- <div class="imageContainer"> -->
       <img src="{{spotifyTrack.album.images[0].url}}" class="image"
     *ngIf="spotifyTrack.album.images && spotifyTrack.album.images[0].url; else noImage">
@@ -14,7 +14,7 @@
       </div> -->
     </div>
     <div class="bottomDetails">
-      <img src="../../assets/icons/spotify_icon.png" class="icon" style="margin-right:5px;">
+      <img src="../../assets/icons/spotify_icon.png" class="icon noselect" style="margin-right:5px;">
         <div class="details" style="background-color:#262627" *ngIf="spotifyTrack.explicit" >
             <p class="innerdetails">Explicit</p>
         </div>
@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div class="trackContainer" *ngIf="soundCloudTrack" >
+<div class="trackContainer" *ngIf="soundCloudTrack" (dblclick)="playSoundCloudTrack()">
     <!-- <div class="imageContainer"> -->
         <img src="{{soundCloudTrack.artwork_url}}" class="image"
       *ngIf="soundCloudTrack.artwork_url; else noImage">
@@ -47,7 +47,7 @@
         </div> -->
       </div>
       <div class="bottomDetails">
-          <img src="../../assets/icons/soundcloud_icon.png" class="icon">
+          <img src="../../assets/icons/soundcloud_icon.png" class="icon noselect" >
           <!-- <div class="details" style="background-color:#262627" *ngIf="spotifyTrack.explicit" >
               <p class="innerdetails">Explicit</p>
           </div> -->

@@ -1,3 +1,5 @@
+import { playerService } from './../services/player.services';
+import { PlayerComponent } from './../player/player.component';
 import { TrackSearchComponent } from './../track-search/track-search.component';
 import { HomeComponent } from '../home/home.component';
 import { SearchComponent } from '../search/search.component';
@@ -16,6 +18,7 @@ import { SpotifyService } from '../services/spotify.services';
 import { SearchResultComponent } from '../search-result/search-result.component';
 import { AlbumSearchComponent } from '../album-search/album-search.component';
 import { PlaylistSearchComponent } from '../playlist-search/playlist-search.component';
+// import {playerService}
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { PlaylistSearchComponent } from '../playlist-search/playlist-search.comp
     SearchResultComponent,
     TrackSearchComponent,
     AlbumSearchComponent,
-    PlaylistSearchComponent
+    PlaylistSearchComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,7 @@ import { PlaylistSearchComponent } from '../playlist-search/playlist-search.comp
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [SpotifyService],
+  providers: [SpotifyService, playerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

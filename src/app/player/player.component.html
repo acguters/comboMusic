@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="details">
+      <img *ngIf="currentStream==='spotify'"  src="{{spotifyTrack.album.images[0].url}}" alt="" class="image">
+      <img *ngIf="currentStream==='soundCloud'"  src="{{soundCloudTrack.artwork_url}}" alt="" class="image">
+      <div class="songDets">
+        <div class="top">
+          <h4 *ngIf="currentStream==='spotify'"  style="margin:0;position:absolute;bottom:0;overflow:scroll;">{{spotifyTrack.name}}</h4>
+          <h4 *ngIf="currentStream==='soundCloud'"  style="margin:0;position:absolute;bottom:0;overflow:scroll;white-space:nowrap;">{{soundCloudTrack.title}}</h4>
+        </div>
+        <div class="bottom">
+          <p *ngIf="currentStream==='spotify'"  style="margin:0;overflow:scroll;">{{spotifyTrack.artists[0].name}}</p>
+          <p *ngIf="currentStream==='soundCloud'"  style="margin:0;overflow:scroll;">{{soundCloudTrack.user.username}}</p>
+        </div>
+      </div>
+  </div>
+  <div class="middle">
+    <div class="topControls"></div>
+    <div class="botControls">
+      <div class="controls">
+        <img src="../../assets/icons/previous.png" class="control nextprev">
+        <img src="../../assets/icons/playpause.png" class="control playpause" (click)="togglePlay()">
+        <img src="../../assets/icons/next.png" class="control nextprev">
+      </div>
+    </div>
+  </div>
+</div>
+

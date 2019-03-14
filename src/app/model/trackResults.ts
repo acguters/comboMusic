@@ -8,8 +8,8 @@ export interface spotifyTrack{
   external_urls:{spotify:string}
   href:string,
   id:string,
-  is_local:false,
-  is_playable:true,
+  is_local:boolean,
+  is_playable:boolean,
   popularity:number,
   preview_url:string,
   name:string,

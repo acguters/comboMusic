@@ -108,12 +108,13 @@ export class SearchComponent implements OnInit {
     const c = ['artists', 'tracks', 'albums', 'playlists'];
     for (let i = 0; i < q.length; i++) {
       this._spotifyService.getAuth()
-        .subscribe(res => this._spotifyService.searchMusic(q[i], c[i], res.access_token).subscribe(
+        .subscribe(response =>
+          this._spotifyService.searchMusic(q[i], c[i], response.access_token).subscribe(
           res => {
             if (res.tracks) {
               this.spotifyTracks = res.tracks.items;
               // console.log('spotify'+res.tracks.items);
-              // console.log('before spotify component', JSON.stringify(res.tracks.items[0], undefined, 2));
+              // console.log('before spotify component', JSON.stringify(response, undefined, 2));
             } else if (res.artists) {
               this.artistResults = res.artists.items;
               // console.log('spotify'+res.artists.items);
@@ -135,7 +136,7 @@ export class SearchComponent implements OnInit {
 
       this._soundCloudService.searchMusic(q[i], c[i]).subscribe(
           res => {
-            console.log('soundcloud' + res.collection[0]);
+            // console.log('soundcloud' + res.collection[0]);
             console.log('before soundcloud component', JSON.stringify(res.collection[0], undefined, 2));
             switch (c[i]) {
               case 'tracks':

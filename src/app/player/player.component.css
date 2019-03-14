@@ -1,0 +1,122 @@
+.details{
+  height:90px;
+  width:20%;
+  /* background-color:green ; */
+  display:inline-block;
+  vertical-align: top;
+  /* margin-left:30px; */
+}
+
+.middle{
+  display:inline-block;
+  width:50%;
+  margin-left:2.5%;
+  height: 90px;
+  vertical-align: top;
+  /* background-color:white; */
+  position:relative;
+}
+
+.container{
+  /* background-color: black; */
+  height:90px;
+  width:100%;
+}
+
+.image{
+  height:70px;
+  width:70px;
+  margin:10px;
+  border-radius:50%;
+  /* background-color:white; */
+  display:inline-block;
+  /* vertical-align:top; */
+}
+
+.songDets{
+  width: calc(100% - 90px);
+  height:90px;
+  /* background-color:red; */
+  display:inline-block;
+  /* margin:0; */
+  /* overflow:scroll; */
+  position:relative;
+  vertical-align: top;
+}
+
+.top::-webkit-scrollbar { height: 0 !important }
+.top{
+  height:45px;
+  width:100%;
+  /* background-color:turquoise; */
+  white-space:nowrap;
+  vertical-align:bottom;
+  /* text-align:bottom; */
+  position:relative;
+  overflow-x:scroll;
+  bottom:0;
+}
+
+.bottom{
+  height:45px;
+  width:100%;
+  margin:0;
+  /* overflow-y:scroll; */
+  /* background-color:yellow; */
+}
+
+.topControls{
+  height:35px;
+  width:100%;
+  /* background-color:red; */
+  position:absolute;
+  top:0;
+
+}
+
+.botControls{
+  height:50px;
+  width:100%;
+  /* background-color:gray; */
+  vertical-align:bottom;
+  position:absolute;
+  bottom:0;
+}
+
+.controls{
+  height:100%;
+  width:25%;
+  /* background-color:green; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin:0 auto;
+}
+
+.control{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left:5px;
+  /* background-color:white; */
+}
+
+.playpause{
+  height:35px;
+  width:35px;
+  border-radius:50%;
+  border:3px solid black;
+  padding:2px;
+}
+
+.nextprev{
+  height:30px;
+  width:30px;
+  border-radius:50%;
+}
+
+
+
+

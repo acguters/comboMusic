@@ -7,7 +7,6 @@ export interface artistResult{
   type:string;
   uri:string;
   href:string;
-  followers:Object;
   external_urls:string;
 }
 

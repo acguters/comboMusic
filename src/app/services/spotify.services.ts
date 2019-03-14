@@ -17,6 +17,7 @@ export class SpotifyService{
   }
 
   getAuth = () => {
+    // console.log("HEELO????????");
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic ' + btoa(this.clientId + ":" + this.clientSecret));
@@ -25,6 +26,8 @@ export class SpotifyService{
     let params: URLSearchParams = new URLSearchParams();
     params.set('grant_type', 'client_credentials');
     let body = params.toString();
+
+    // console.log("aposef????????");
 
     return this._http.post(this.proxyurl + 'https://accounts.spotify.com/api/token', body, { headers: headers })
       .pipe(map(res => res.json()));
