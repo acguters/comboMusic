@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // console.log("home loaded");
     // setUpPlayer();
+
   }
 
 }

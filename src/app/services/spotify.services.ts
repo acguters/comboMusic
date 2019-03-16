@@ -5,6 +5,30 @@ import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+export interface SpotifyConfig {
+  clientId: string,
+  redirectUri: string,
+  scope: string,
+  authToken?: string,
+  apiBase: string,
+}
+
+export interface SpotifyOptions {
+  limit?: number,
+  offset?: number,
+  market?: string,
+  album_type?: string,
+  country?: string,
+  type?: string,
+  q?: string,
+  timestamp?: string,
+  locale?: string,
+  public?: boolean,
+  name?: string,
+  time_range?: string,
+  after?: string,
+  before?: string,
+}
 @Injectable()
 export class SpotifyService{
   private baseUrl= 'https://api.spotify.com/v1/';
@@ -56,6 +80,14 @@ export class SpotifyService{
     }
     console.log(this.searchUrl);
     return this._http.get(this.searchUrl,{headers:headers}).pipe(map(res =>res.json()));
+  }
+
+  getLibrary(authToken:string){
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + localStorage.getItem('spotifyToken'));
+    console.log("spotifyservicestoken:" + localStorage.getItem('spotifyToken'));
+    let libraryUrl = this.baseUrl +'me/tracks?';
+    return this._http.get(libraryUrl,{headers:headers}).pipe(map(res=>res.json()));
   }
 
 

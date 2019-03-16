@@ -1,0 +1,18 @@
+<div class="resultContainer" >
+    <app-track-search *ngFor="let track of spotifyTracks;index as i;"
+    [spotifyTrack]="track" [index]="i"></app-track-search>
+</div>
+
+<!-- <ng-template> -->
+  <div class="resultContainer" *ngIf="playlistSelected==false; else selected;" >
+    <app-playlist-search *ngFor="let playlist of soundCloudPlaylists"
+    [soundCloudPlaylist]="playlist" (dblclick)="openPlaylist(playlist.id)"></app-playlist-search>
+  </div>
+<ng-template #selected>
+  <div class="resultContainer">
+    <app-track-search *ngFor="let track of soundCloudTracks;index as i;"
+    [soundCloudTrack]="track" [index]="i"></app-track-search>
+  </div>
+</ng-template>
+<!-- </ng-template> -->
+

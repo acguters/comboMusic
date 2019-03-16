@@ -22,6 +22,9 @@ export class TrackSearchComponent implements OnInit {
   @Input()
   soundCloudTrack:soundCloudTrack;
 
+  @Input()
+  index:number;
+
   private selectedSpotifyTrack:spotifyTrack;
   private selectedSCTrack:soundCloudTrack;
   private currentStream:string;
@@ -49,7 +52,7 @@ export class TrackSearchComponent implements OnInit {
   playSpotifyTrack(){
     console.log('before spotify play: ' +this.currentStream);
     if(this.currentStream==='soundCloud') pauseSC();
-    this.service.playSpotifyTrack(this.spotifyTrack);
+    this.service.playSpotifyTrack(this.spotifyTrack, this.index);
     playSpotify(this.spotifyTrack.uri);
     console.log(this.spotifyTrack.name);
   }
@@ -57,7 +60,7 @@ export class TrackSearchComponent implements OnInit {
   playSoundCloudTrack(){
     console.log('before soundcloud play: ' + this.currentStream);
     if(this.currentStream==='spotify') pauseSpotify();
-    this.service.playSoundCloudTrack(this.soundCloudTrack);
+    this.service.playSoundCloudTrack(this.soundCloudTrack,this.index);
     playSC('/tracks/'+this.soundCloudTrack.id.toString());
   }
 

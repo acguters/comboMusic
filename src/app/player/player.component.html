@@ -14,12 +14,28 @@
       </div>
   </div>
   <div class="middle">
-    <div class="topControls"></div>
+    <div class="topControls">
+      <div class="timeContainer">
+      <h5 class="time">{{leftTime}}</h5>
+    </div>
+    <mat-slider class = "slider"
+    thumbLabel
+    [displayWith] = "formatLabel"
+    max = "{{songDuration}}"
+    value="{{songPosition}}"
+    (input)="newPosition = $event.value"
+    (mousedown)="changePositionDown()"
+    (mouseup)="changePositionUp()"></mat-slider>
+    <div class="timeContainer">
+        <h5 class="time">{{rightTime}}</h5>
+    </div>
+    </div>
+
     <div class="botControls">
       <div class="controls">
-        <img src="../../assets/icons/previous.png" class="control nextprev">
+        <img src="../../assets/icons/previous.png" class="control nextprev" style="margin-left:0;" (click)="prevSong()">
         <img src="../../assets/icons/playpause.png" class="control playpause" (click)="togglePlay()">
-        <img src="../../assets/icons/next.png" class="control nextprev">
+        <img src="../../assets/icons/next.png" class="control nextprev" (click)="nextSong()">
       </div>
     </div>
   </div>

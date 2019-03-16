@@ -36,7 +36,9 @@
         <img src="{{soundCloudTrack.artwork_url}}" class="image"
       *ngIf="soundCloudTrack.artwork_url; else noImage">
       <ng-template #noImage>
-          <img src="" class="image">
+          <div class="image">
+            <img src="../../assets/icons/soundcloud_icon.png" class="innerIcon">
+          </div>
       </ng-template>
     <!-- </div> -->
     <div class="detailsContainer">

@@ -1,10 +1,9 @@
-// Get the hash of the url
-
 var deviceId;
 var acc_token;
 var player;
+var spotifyPosition;
 
-function setUpSpotifyPlayer(){
+// function setUpSpotifyPlayer(){
   // localStorage.setItem('spotifyToken',token);
   const hash = window.location.hash
   .substring(1)
@@ -29,6 +28,7 @@ function setUpSpotifyPlayer(){
   //   console.log('_TOKEN ; ' + _token);
   // } else {
     _token = hash.access_token;
+    localStorage.setItem('spotifyToken', _token);
   // }
 
   const authEndpoint = 'https://accounts.spotify.com/authorize';
@@ -40,7 +40,9 @@ function setUpSpotifyPlayer(){
     'streaming',
     'user-read-birthdate',
     'user-read-private',
-    'user-modify-playback-state'
+    'user-modify-playback-state',
+    'user-library-read',
+    'user-read-email'
   ];
 
   // If there is no token, redirect to Spotify authorization
@@ -53,10 +55,10 @@ function setUpSpotifyPlayer(){
 
   window.onSpotifyPlayerAPIReady = () => {
     // _token = localStorage.geItem('spotifyToken');
-    console.log('token:' + _token);
-    console.log('REFRESH TOKEN?' + JSON.stringify(hash));
+    // console.log('token:' + _token);
+    // console.log('REFRESH TOKEN?' + JSON.stringify(hash));
     // localStorage.setItem('spotifyToken',_token);
-    console.log('TOKENTOKEN' + localStorage.getItem('spotifyToken'));
+    // console.log('TOKENTOKEN' + localStorage.getItem('spotifyToken'));
     player = new Spotify.Player({
       name: 'Web Playback SDK Template',
       getOAuthToken: cb => { cb(_token); }
@@ -69,11 +71,21 @@ function setUpSpotifyPlayer(){
     player.on('playback_error', e => console.error(e));
 
     // Playback status updates
-    player.on('player_state_changed', state => {
-      console.log(state)
-      $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
-      $('#current-track-name').text(state.track_window.current_track.name);
-    });
+    // player.on('player_state_changed', state => {
+    //   console.log(state)
+      player.addListener('player_state_changed', ({
+        position,
+        // duration,
+        // track_window: { current_track }
+      }) => {
+        // console.log('Currently Playing', current_track);
+        console.log('Position in Song', position);
+        spotifyPosition=position;
+        // console.log('Duration of Song', duration);
+      });
+      // $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
+      // $('#current-track-name').text(state.track_window.current_track.name);
+    // });
 
     // Ready
     player.on('ready', data => {
@@ -87,7 +99,11 @@ function setUpSpotifyPlayer(){
     // Connect to the player!
     player.connect();
   }
-}
+
+// function getSpotifyPosition(){
+//   return spotifyPosition;
+// }
+
 
 // Play a specified track on the Web Playback SDK's device ID
 function playSpotify(uri) {
@@ -106,6 +122,14 @@ function playSpotify(uri) {
 
 
 }
+
+// function getPosition(){
+//   player.addListener('player_state_changed', ({
+//     position,
+//   }) => {
+//     console.log('Position in Song', position);
+//   });
+// }
 function pauseSpotify(){
   player.pause();
 }
@@ -114,3 +138,6 @@ function resumeSpotify(){
   player.resume();
 }
 
+function spotifySeek(newPosition){
+  player.seek(newPosition*1000);
+}

@@ -15,9 +15,12 @@
 <ng-template #soundCloud>
   <div class="searchContainer" style="background-color:white" >
   <img src="{{soundCloudPlaylist.artwork_url}}"
-  *ngIf="soundCloudPlaylist.artwork_url;else noArtist;" class="image" >
+  *ngIf="soundCloudPlaylist.artwork_url==='null';else noArtist;" class="image" >
   <ng-template #noArtist>
-    <img src="../../assets/icons/generic_user.jpg" class="image">
+    <div class="image">
+      <img src="../../assets/icons/soundcloud_icon.png" class="innerIcon">
+    </div>
+
   </ng-template>
   <div class="company">
     <img src="../../assets/icons/soundcloud.png" class="icon">

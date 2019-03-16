@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 import { SoundcloudServices } from '../services/soundcloud.services';
 import { searchSelectors } from '../model/support';
 import { spotifyPlaylist } from '../model/playlistResults';
+import { playerService } from '../services/player.services';
 
 @Component({
   selector: 'app-search',
@@ -34,7 +35,7 @@ export class SearchComponent implements OnInit {
   spotifyPlaylists: spotifyPlaylist[];
   // soundCloudArtists:artist
 
-  constructor(private _spotifyService: SpotifyService, private _soundCloudService: SoundcloudServices) {
+  constructor(private _spotifyService: SpotifyService, private _soundCloudService: SoundcloudServices, private player: playerService) {
 
    }
 
@@ -49,6 +50,7 @@ export class SearchComponent implements OnInit {
           res => {
             if (res.tracks) {
               this.spotifyTracks = res.tracks.items;
+              this.player.updateSpotifyTracks(this.spotifyTracks);
               // console.log('spotify'+res.tracks.items);
               // console.log('before spotify component', JSON.stringify(res.tracks.items[0], undefined, 2));
             } else if (res.artists) {
@@ -79,6 +81,7 @@ export class SearchComponent implements OnInit {
         switch (this.currentSelected.toLowerCase()) {
           case 'tracks':
             this.soundCloudTracks = res.collection;
+            this.player.updatescTracks(this.soundCloudTracks);
             break;
           case 'artists':
             this.soundCloudArtists = res.collection;
@@ -113,6 +116,8 @@ export class SearchComponent implements OnInit {
           res => {
             if (res.tracks) {
               this.spotifyTracks = res.tracks.items;
+              this.player.updateSpotifyTracks(this.spotifyTracks);
+              // this.player.
               // console.log('spotify'+res.tracks.items);
               // console.log('before spotify component', JSON.stringify(response, undefined, 2));
             } else if (res.artists) {
@@ -137,10 +142,11 @@ export class SearchComponent implements OnInit {
       this._soundCloudService.searchMusic(q[i], c[i]).subscribe(
           res => {
             // console.log('soundcloud' + res.collection[0]);
-            console.log('before soundcloud component', JSON.stringify(res.collection[0], undefined, 2));
+            // console.log('before soundcloud component', JSON.stringify(res.collection[0], undefined, 2));
             switch (c[i]) {
               case 'tracks':
                 this.soundCloudTracks = res.collection;
+                this.player.updatescTracks(this.soundCloudTracks);
                 break;
               case 'artists':
                 this.soundCloudArtists = res.collection;

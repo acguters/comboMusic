@@ -8,6 +8,10 @@
   border-radius:50%;
   margin-left:50px;
   margin-top:10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   /* background-image: url({{artistRes.images[0].url}}) */
   /* margin: 1em; */
 }
@@ -79,3 +83,7 @@ h4{
   text-align: center;
 }
 
+.innerIcon{
+  width:70px;
+  height:50px;
+}

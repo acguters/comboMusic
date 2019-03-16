@@ -48,5 +48,14 @@ export class SoundcloudServices{
     };
   }
 
+  getUserPlaylists(userid:string){
+    var url=this.baseUrl+'/users/'+userid+'/playlists?client_id='+this.clientId;
+    return this._http.request(url).pipe(map(res=>res.json()));
+  }
+
+  getPlaylistTracks(playlistId:string){
+    var url = this.baseUrl+'/playlists/'+playlistId+'?client_id='+this.clientId;
+    return this._http.request(url).pipe(map(res=>res.json()));
+  }
 
 }

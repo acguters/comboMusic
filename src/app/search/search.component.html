@@ -33,12 +33,12 @@
 </div>
 
 <div class="resultContainer" *ngIf="currentSelected==='Tracks'" >
-    <app-track-search *ngFor="let track of spotifyTracks"
-    [spotifyTrack]="track"></app-track-search>
+    <app-track-search *ngFor="let track of spotifyTracks;index as i;"
+    [spotifyTrack]="track" [index]="i"></app-track-search>
 </div>
 <div class="resultContainer" *ngIf="currentSelected==='Tracks'">
-  <app-track-search *ngFor="let track of soundCloudTracks"
-  [soundCloudTrack]="track"></app-track-search>
+  <app-track-search *ngFor="let track of soundCloudTracks;index as i;"
+  [soundCloudTrack]="track"[index]="i"></app-track-search>
 </div>
 
 <div class="resultContainer" *ngIf="currentSelected==='Albums'" >

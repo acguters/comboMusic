@@ -15,8 +15,10 @@
 
   <mat-sidenav-content class="main-view-container" >
       <h1 *ngIf="!subSelected">{{selectedItem.title}}</h1>
-      <h1 *ngIf="subSelected">{{selectedSubItem.title}}</h1>
+      <!-- <h1 *ngIf="subSelected">test</h1> -->
       <app-home *ngIf="!subSelected && selectedItem.title==='Home'"></app-home>
+      <!-- <app-your-songs *ngIf="subSelected" ></app-your-songs> -->
+      <app-your-songs *ngIf="!subSelected && selectedItem.title==='Your Songs'"></app-your-songs>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

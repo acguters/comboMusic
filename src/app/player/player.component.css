@@ -9,11 +9,11 @@
 
 .middle{
   display:inline-block;
-  width:50%;
+  width:55%;
   margin-left:2.5%;
   height: 90px;
   vertical-align: top;
-  /* background-color:white; */
+  /* background-color:gray; */
   position:relative;
 }
 
@@ -71,13 +71,14 @@
   /* background-color:red; */
   position:absolute;
   top:0;
+  margin-top:10px;
 
 }
 
 .botControls{
   height:50px;
   width:100%;
-  /* background-color:gray; */
+  /* background-color:purple; */
   vertical-align:bottom;
   position:absolute;
   bottom:0;
@@ -91,7 +92,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin:0 auto;
+  margin-left: 35%;
+  /* margin-right:15px; */
+  /* margin-left:5%; */
+
 }
 
 .control{
@@ -117,6 +121,36 @@
   border-radius:50%;
 }
 
+.timeContainer{
+  display:inline-block;
+  width:5%;
+  vertical-align:middle;
+  /* padding-top:10px; */
+  /* margin-bottom:120px; */
+  height:15px;
+  margin-top:-2px;
+  /* background-color: teal; */
+  /* justify-content: center;
+  align-items: center;
+  text-align: center; */
+}
 
+.time{
+  /* display: flex; */
+  margin:0;
+  /* margin-top:10px; */
+  font-size:15px;
+  vertical-align:middle;
+  /* justify-content: center;
+  align-items: center;
+  text-align: center; */
+}
+
+.slider{
+  vertical-align:middle;
+  display:inline-block;
+  width:85%;
+  /* margin: 0 1% 0 1%; */
+}
 
 

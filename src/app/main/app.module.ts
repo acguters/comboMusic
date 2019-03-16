@@ -18,6 +18,8 @@ import { SpotifyService } from '../services/spotify.services';
 import { SearchResultComponent } from '../search-result/search-result.component';
 import { AlbumSearchComponent } from '../album-search/album-search.component';
 import { PlaylistSearchComponent } from '../playlist-search/playlist-search.component';
+import { YourSongsComponent } from '../your-songs/your-songs.component';
+import { SoundcloudServices } from '../services/soundcloud.services';
 // import {playerService}
 
 @NgModule({
@@ -30,7 +32,8 @@ import { PlaylistSearchComponent } from '../playlist-search/playlist-search.comp
     TrackSearchComponent,
     AlbumSearchComponent,
     PlaylistSearchComponent,
-    PlayerComponent
+    PlayerComponent,
+    YourSongsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,13 @@ import { PlaylistSearchComponent } from '../playlist-search/playlist-search.comp
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [SpotifyService, playerService],
+  providers: [SpotifyService, playerService, SoundcloudServices, {provide: "SpotifyConfig" , useValue: {
+    clientId: 'd900fe3c74af46f49f4bdc6dc0644c55',
+    redirectUri: 'http://localhost:4200/callback',
+    scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-library-read user-library-modify user-read-private user-top-read user-read-recently-played',
+        // If you already have an authToken
+    authToken: localStorage.getItem('angular2-spotify-token')
+}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

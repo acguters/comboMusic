@@ -3,6 +3,7 @@ function initializeSC(id){
     client_id: id.toString(),
     redirect_uri: 'http://example.com/callback'
   });
+
 }
 
 var SCplayer;
@@ -25,4 +26,8 @@ function pauseSC(){
 
 function resumeSC(){
   SCplayer.play();
+}
+
+function scSeek(newPosition){
+  SCplayer.seek(newPosition*1000);
 }
