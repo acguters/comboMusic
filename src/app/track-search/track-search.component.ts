@@ -25,18 +25,21 @@ export class TrackSearchComponent implements OnInit {
   @Input()
   index:number;
 
-  private selectedSpotifyTrack:spotifyTrack;
-  private selectedSCTrack:soundCloudTrack;
+  private currentSpotifyTracks:spotifyTrack[];
+  private currentscTracks:soundCloudTrack[];
   private currentStream:string;
+  private prevIndex=0;
 
   constructor(private service: playerService) { }
 
 
 
   ngOnInit() {
-    this.service.currentSpotifyTrack.subscribe(spotifyTrack => this.selectedSpotifyTrack = spotifyTrack);
-    this.service.currentSCTrack.subscribe(soundCloudTrack => this.selectedSCTrack=soundCloudTrack);
+    this.service.currentSpotifyTracks.subscribe(spotifyTracks => this.currentSpotifyTracks = spotifyTracks);
+    this.service.currentscTracks.subscribe(soundCloudTracks => this.currentscTracks=soundCloudTracks);
     this.service.currentService.subscribe(stream => this.currentStream = stream);
+    this.service.currentPrevIndex.subscribe(index => this.prevIndex = index);
+    // this.service.currentIndex.subscribe(index => this.index = index);
     // console.log(this.spotifyTrack.album.images[0].url);
     // document.querySelector("popularyBar").getElementsByClassName.c
   }
@@ -50,18 +53,45 @@ export class TrackSearchComponent implements OnInit {
   }
 
   playSpotifyTrack(){
-    console.log('before spotify play: ' +this.currentStream);
-    if(this.currentStream==='soundCloud') pauseSC();
+    console.log('before spotify play: ' +this.spotifyTrack);
+    if(this.currentStream==='soundCloud'){
+      this.currentscTracks[this.prevIndex].isPlaying=false;
+      this.service.updatescTracks(this.currentscTracks);
+      pauseSC();
+    }  else{
+      this.currentSpotifyTracks[this.prevIndex].isPlaying=false;
+      // this.prevIndex=this.index;
+    }
     this.service.playSpotifyTrack(this.spotifyTrack, this.index);
     playSpotify(this.spotifyTrack.uri);
     console.log(this.spotifyTrack.name);
+    // this.selectedSpotifyTrack[this.]
+    this.currentSpotifyTracks[this.index].isPlaying=true;
+    this.service.updateSpotifyTracks(this.currentSpotifyTracks);
+    // this.service.updateSelectedSpotify(this.index);
+    // console.log('SELECTED?' + this.selectedSpotifyTrack[this.index].isPlaying);
+    // this.spotifyTrack.isPlaying=true;
   }
 
   playSoundCloudTrack(){
-    console.log('before soundcloud play: ' + this.currentStream);
-    if(this.currentStream==='spotify') pauseSpotify();
+    // console.log('before soundcloud play: ' + this.currentStream);
+    if(this.currentStream==='spotify'){
+      this.currentSpotifyTracks[this.prevIndex].isPlaying=false;
+      this.service.updateSpotifyTracks(this.currentSpotifyTracks);
+      pauseSpotify();
+    }else{
+      this.currentscTracks[this.prevIndex].isPlaying=false;
+      // this.prevIndex=this.index;
+    }
     this.service.playSoundCloudTrack(this.soundCloudTrack,this.index);
     playSC('/tracks/'+this.soundCloudTrack.id.toString());
+    this.currentscTracks[this.index].isPlaying=true;
+    this.service.updatescTracks(this.currentscTracks);
+    // this.soundCloudTrack.isPlaying=false;
+  }
+
+  updateSpotifyPlaylist(){
+
   }
 
 }

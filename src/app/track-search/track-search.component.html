@@ -1,4 +1,5 @@
-<div class="trackContainer" *ngIf="spotifyTrack" (dblclick)="playSpotifyTrack()">
+<div class="trackContainer" *ngIf="spotifyTrack" (dblclick)="playSpotifyTrack()"
+  [style.background-color]="spotifyTrack.isPlaying? '#ff7700' : '#191414'">
   <!-- <div class="imageContainer"> -->
       <img src="{{spotifyTrack.album.images[0].url}}" class="image"
     *ngIf="spotifyTrack.album.images && spotifyTrack.album.images[0].url; else noImage">
@@ -31,7 +32,8 @@
   </div>
 </div>
 
-<div class="trackContainer" *ngIf="soundCloudTrack" (dblclick)="playSoundCloudTrack()">
+<div class="trackContainer" *ngIf="soundCloudTrack" (dblclick)="playSoundCloudTrack()"
+[style.background-color]="soundCloudTrack.isPlaying? '#ff7700' : '#191414'">
     <!-- <div class="imageContainer"> -->
         <img src="{{soundCloudTrack.artwork_url}}" class="image"
       *ngIf="soundCloudTrack.artwork_url; else noImage">

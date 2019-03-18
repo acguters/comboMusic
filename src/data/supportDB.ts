@@ -61,7 +61,8 @@ export const defaultSpotifyTrack={
     external_urls:{spotify:'string'},
     id:'string',
     href:'string'},
-  explicit:false
+  explicit:false,
+  isPlaying:false
 }
 
 export const defaultSoundCloudTrack={
@@ -77,7 +78,8 @@ export const defaultSoundCloudTrack={
     id:0},
   tracks_uri:'',
   duration:0,
-  likes_count:0
+  likes_count:0,
+  isPlaying:false
 }
 // export interface soundCloudPlaylist{
 //   id:number;

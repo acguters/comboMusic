@@ -3,6 +3,7 @@ import { SoundcloudServices } from './../services/soundcloud.services';
 import { SpotifyService } from './../services/spotify.services';
 import { Component, OnInit } from '@angular/core';
 import { spotifyTrack, soundCloudTrack } from '../model/trackResults';
+import { playerService } from '../services/player.services';
 // import { soundCloudPlaylist } from '../model/albumResults';
 
 @Component({
@@ -18,7 +19,7 @@ export class YourSongsComponent implements OnInit {
   playlistSelected=false;
 
 
-  constructor(private spotifyService:SpotifyService, private soundcloudServices:SoundcloudServices) { }
+  constructor(private spotifyService:SpotifyService, private soundcloudServices:SoundcloudServices, private player:playerService) { }
 
   ngOnInit() {
     this.spotifyTracks = [];
@@ -29,6 +30,7 @@ export class YourSongsComponent implements OnInit {
          library.items.forEach(item => {
            this.spotifyTracks.push(item.track);
          });
+         this.player.updateSpotifyTracks(this.spotifyTracks);
         //  this.spotifyTracks = library.items;
         // console.log('before spotify component', JSON.stringify(library.items[0].track, undefined, 2));
         }));
@@ -45,8 +47,9 @@ export class YourSongsComponent implements OnInit {
     this.soundcloudServices.getPlaylistTracks(id)
     .subscribe(res=>{
       this.soundCloudTracks = res.tracks;
+      this.player.updatescTracks(this.soundCloudTracks);
       // console.log('before sc component', JSON.stringify(res.tracks, undefined, 2));
     });
   }
-  
+
 }

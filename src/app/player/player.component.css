@@ -18,9 +18,10 @@
 }
 
 .container{
-  /* background-color: black; */
-  height:90px;
+  background-color: #cfb997;
+  height:95px;
   width:100%;
+  /* f5f5dc */
 }
 
 .image{

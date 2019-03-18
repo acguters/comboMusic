@@ -18,10 +18,14 @@ export class playerService{
   private spotifyTracks:BehaviorSubject<Array<spotifyTrack>>=new BehaviorSubject([]);
   private scTracks:BehaviorSubject<Array<soundCloudTrack>>=new BehaviorSubject([]);
   private index:BehaviorSubject<number>=new BehaviorSubject(0);
+  private prevIndex:BehaviorSubject<number>=new BehaviorSubject(0);
+  ibs: BehaviorSubject<any> = new BehaviorSubject({a: 1, b: 2, c: 5, d: 9});
+  newValue=3;
   currentSpotifyTrack = this.spotifyTrack.asObservable();
   currentSCTrack = this.soundCloudTrack.asObservable();
   currentService = this.service.asObservable();
   currentDuration = this.duration.asObservable();
+  currentPrevIndex = this.prevIndex.asObservable();
   newSong = this.newsong.asObservable();
   currentSpotifyTracks = this.spotifyTracks.asObservable();
   currentscTracks = this.scTracks.asObservable();
@@ -36,6 +40,7 @@ export class playerService{
     this.index.next(index);
     // this.spotifyTrack.name;
     this.service.next('spotify');
+    this.prevIndex.next(index);
   }
 
   playSoundCloudTrack(SCtrack:soundCloudTrack,index:number){
@@ -45,6 +50,7 @@ export class playerService{
     this.newsong.next(true);
     this.service.next('soundCloud');
     this.index.next(index);
+    this.prevIndex.next(index);
   }
 
   updateSong(){
@@ -61,6 +67,17 @@ export class playerService{
 
   updateIndex(newIndex:number){
     this.index.next(newIndex);
+  }
+
+  updateSelectedSpotify(index:number){
+    // console.log(this.currentSpotifyTracks[0].isPlaying);
+    // this.spotifyTracks.next({...this.spotifyTracks.value,});
+    this.ibs.next({...this.ibs.value, b: this.newValue++})
+    // this.ibs.next({...this.ibs.value, b: this.newValue++})
+  }
+
+  updateSelectedSC(index:number){
+    this.scTracks[index].isPlaying.next(true);
   }
 
 }

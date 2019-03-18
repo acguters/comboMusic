@@ -169,10 +169,16 @@ export class PlayerComponent implements OnInit {
     this.service.updateIndex(this.index+1)
     if(this.currentStream==='spotify')
     {
+      this.spotifyTracks[this.index-1].isPlaying=false;
+      this.spotifyTracks[this.index].isPlaying=true;
+      this.service.updateSpotifyTracks(this.spotifyTracks);
       this.service.playSpotifyTrack(this.spotifyTracks[this.index],this.index);
       playSpotify(this.spotifyTracks[this.index].uri);
     }
     else {
+      this.scTracks[this.index-1].isPlaying=false;
+      this.scTracks[this.index].isPlaying=true;
+      this.service.updatescTracks(this.scTracks);
       this.service.playSoundCloudTrack(this.scTracks[this.index],this.index);
       playSC('/tracks/'+this.scTracks[this.index].id.toString());
     }
@@ -182,18 +188,26 @@ export class PlayerComponent implements OnInit {
     this.service.updateIndex(this.index-1);
     if(this.currentStream==='spotify'){
       // pause
+      this.spotifyTracks[this.index+1].isPlaying=false;
+      this.spotifyTracks[this.index].isPlaying=true;
+      this.service.updateSpotifyTracks(this.spotifyTracks);
        this.service.playSpotifyTrack(this.spotifyTracks[this.index],this.index);
       //  if(this.currentStream==='soundCloud') pauseSC();
       //  this.service.playSpotifyTrack(this.spotifyTrack, this.index);
        playSpotify(this.spotifyTracks[this.index].uri);
     }
     else {
+      this.scTracks[this.index+1].isPlaying=false;
+      this.scTracks[this.index].isPlaying=true;
+      this.service.updatescTracks(this.scTracks);
       this.service.playSoundCloudTrack(this.scTracks[this.index],this.index);
       playSC('/tracks/'+this.scTracks[this.index].id.toString());
     }
   }
 
-
+  // playDown(){
+  //   playdo
+  // }
 
 
 

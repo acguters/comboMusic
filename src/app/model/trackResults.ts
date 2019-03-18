@@ -16,6 +16,7 @@ export interface spotifyTrack{
   uri:string,
   album:spotifyAlbum,
   explicit:boolean,
+  isPlaying:boolean
 }
 
 export interface soundCloudTrack{
@@ -29,5 +30,6 @@ export interface soundCloudTrack{
   user:soundcloudArtist;
   tracks_uri:string;
   duration:number;
-  likes_count:number
+  likes_count:number;
+  isPlaying:boolean;
 }
