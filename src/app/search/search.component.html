@@ -23,20 +23,35 @@
 </div>
 
 
-<div class="resultContainer" *ngIf="currentSelected==='Artists'" >
+<div class="resultContainer" *ngIf="currentSelected==='Artists' && !spotifyArtistSelected;" >
     <app-search-result *ngFor="let artist of artistResults"
-    [artistRes]="artist"></app-search-result>
+    [artistRes]="artist" (selectedSpotifyArtist)="setSpotifyArtist($event)"></app-search-result>
 </div>
+<!-- <ng-template #viewArtist> -->
+  <div class="resultContainer" *ngIf="currentSelected==='Artists' && spotifyArtistSelected;">
+    <app-view-artist [spotifyArtist]="selectedSpotifyArtist" (onBack)="artistReturned($event)"></app-view-artist>
+  </div>
+<!-- </ng-template> -->
 <div class="resultContainer" *ngIf="currentSelected==='Artists'">
   <app-search-result *ngFor="let artist of soundCloudArtists"
   [soundcloudArtist]="artist"></app-search-result>
 </div>
 
-<div class="resultContainer" *ngIf="currentSelected==='Tracks'" >
+<div class="resultContainer" *ngIf="currentSelected==='Tracks'"
+infinite-scroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="200"
+[scrollWindow]="false"
+(scrolled)="moreSpotifySongs()">
     <app-track-search *ngFor="let track of spotifyTracks;index as i;"
     [spotifyTrack]="track" [index]="i"></app-track-search>
 </div>
-<div class="resultContainer" *ngIf="currentSelected==='Tracks'">
+<div class="resultContainer" *ngIf="currentSelected==='Tracks'"
+infinite-scroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="200"
+[scrollWindow]="false"
+(scrolled)="morescSongs()">
   <app-track-search *ngFor="let track of soundCloudTracks;index as i;"
   [soundCloudTrack]="track"[index]="i"></app-track-search>
 </div>

@@ -53,7 +53,7 @@ export class TrackSearchComponent implements OnInit {
   }
 
   playSpotifyTrack(){
-    console.log('before spotify play: ' +this.spotifyTrack);
+    // console.log('before spotify play: ' +this.spotifyTrack);
     if(this.currentStream==='soundCloud'){
       this.currentscTracks[this.prevIndex].isPlaying=false;
       this.service.updatescTracks(this.currentscTracks);

@@ -1,17 +1,4 @@
-<!-- <div class="resultCard">
-    <img src="{{artistRes.images[0].url}}"
-    *ngIf="artistRes.images.length!=0;else noArtist;" class="image" >
-    <ng-template #noArtist>
-      <div #noArtist class="image"></div>
-    </ng-template>
-  <div class="details">
-    <div class="artistName">
-      <h4 style="margin:0;padding-left:10px; margin-top:5px;">{{artistRes.name}}</h4>
-    </div>
-  </div>
-</div> -->
-
-<div class="searchContainer" *ngIf="artistRes; else soundCloud;" >
+<div class="searchContainer" *ngIf="artistRes; else soundCloud;" (click)="selectSpotifyArtist()">
     <img src="{{artistRes.images[0].url}}"
     *ngIf="artistRes.images.length!=0;else noArtist;" class="image" >
     <ng-template #noArtist>
@@ -23,7 +10,7 @@
     <h4 layout="row" layout-align="center center">{{artistRes.name}}</h4>
 </div>
 <ng-template #soundCloud>
-  <div class="searchContainer" style="background-color:white" >
+  <div class="searchContainer" style="background-color:white" (click)="selectscArtist()">
   <img src="{{soundcloudArtist.avatar_url}}"
   *ngIf="soundcloudArtist.avatar_url;else noArtist;" class="image" >
   <ng-template #noArtist>

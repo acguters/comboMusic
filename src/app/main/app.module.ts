@@ -20,6 +20,8 @@ import { AlbumSearchComponent } from '../album-search/album-search.component';
 import { PlaylistSearchComponent } from '../playlist-search/playlist-search.component';
 import { YourSongsComponent } from '../your-songs/your-songs.component';
 import { SoundcloudServices } from '../services/soundcloud.services';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ViewArtistComponent } from '../view-artist/view-artist.component';
 // import {playerService}
 
 @NgModule({
@@ -33,7 +35,8 @@ import { SoundcloudServices } from '../services/soundcloud.services';
     AlbumSearchComponent,
     PlaylistSearchComponent,
     PlayerComponent,
-    YourSongsComponent
+    YourSongsComponent,
+    ViewArtistComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { SoundcloudServices } from '../services/soundcloud.services';
     DemoMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    InfiniteScrollModule
   ],
   providers: [SpotifyService, playerService, SoundcloudServices, {provide: "SpotifyConfig" , useValue: {
     clientId: 'd900fe3c74af46f49f4bdc6dc0644c55',

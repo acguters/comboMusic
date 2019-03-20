@@ -1,0 +1,27 @@
+<div class="searchContainer">
+  <img src="../../assets/icons/go_back.png" class="goBack" (click)="goBack()">
+  <div class="imageContainer">
+    <img src="{{spotifyArtist.images[0].url}}" class="image">
+  </div>
+  <div class="nameContainer">
+    <img src="../../assets/icons/spotify_icon.png" alt="" class="spotifyIcon">
+    <h2 class="name">{{spotifyArtist.name}}</h2>
+  </div>
+
+  <h3 style="margin: 10px 0 10px 10px; color:white;">Top Tracks</h3>
+  <div class="topTracks">
+    <app-track-search *ngFor="let track of spotifyTracks;index as i;"
+  [spotifyTrack]="track" [index]="i">
+  </app-track-search>
+  </div>
+
+
+  <h3 style="margin: 10px 0 10px 10px; color:white;">Albums</h3>
+  <div style="overflow-x:scroll; white-space: nowrap;">
+    <app-album-search *ngFor="let album of spotifyAlbums; index as i;"
+      [spotifyAlbum]="album">
+    </app-album-search>
+  </div>
+
+
+</div>

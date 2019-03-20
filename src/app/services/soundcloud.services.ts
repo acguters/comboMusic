@@ -49,13 +49,23 @@ export class SoundcloudServices{
   }
 
   getUserPlaylists(userid:string){
-    var url=this.baseUrl+'/users/'+userid+'/playlists?client_id='+this.clientId;
-    return this._http.request(url).pipe(map(res=>res.json()));
+    var url=this.baseUrl+'/users/'+userid+'/playlists?client_id='+this.clientId+'&limit=20';
+    return this._http.get(url).pipe(map(res=>res.json()));
   }
 
   getPlaylistTracks(playlistId:string){
-    var url = this.baseUrl+'/playlists/'+playlistId+'?client_id='+this.clientId;
+    var url = this.baseUrl+'/playlists/'+playlistId+'?client_id='+this.clientId+'&linked_partitioning=1';
     return this._http.request(url).pipe(map(res=>res.json()));
+  }
+
+  getMorePlaylistTracks(playlistId:string,path:string){
+    var url = path+'&limit=30&linked_partitioning=1';
+    return this._http.get(url).pipe(map(res=>res.json()));
+  }
+
+  getMoreSCTracks(path:string){
+    var url = path+'&limit=30&linked_partitioning=1'
+    return this._http.get(url).pipe(map(res=>res.json()));
   }
 
 }
