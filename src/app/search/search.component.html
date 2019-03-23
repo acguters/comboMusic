@@ -29,13 +29,16 @@
 </div>
 <!-- <ng-template #viewArtist> -->
   <div class="resultContainer" *ngIf="currentSelected==='Artists' && spotifyArtistSelected;">
-    <app-view-artist [spotifyArtist]="selectedSpotifyArtist" (onBack)="artistReturned($event)"></app-view-artist>
+    <app-view-artist [spotifyArtist]="selectedSpotifyArtist" (onBack)="artistReturned($event)" [stream]="'spotify'"></app-view-artist>
   </div>
 <!-- </ng-template> -->
-<div class="resultContainer" *ngIf="currentSelected==='Artists'">
+<div class="resultContainer" *ngIf="currentSelected==='Artists'&& !scArtistSelected;">
   <app-search-result *ngFor="let artist of soundCloudArtists"
-  [soundcloudArtist]="artist"></app-search-result>
+  [soundcloudArtist]="artist" (selectedscArtist)="setscArtist($event)"></app-search-result>
 </div>
+<div class="resultContainer" *ngIf="currentSelected==='Artists' && scArtistSelected;">
+    <app-view-artist [scArtist]="selectedSCArtist" (onBack)="scArtistReturned($event)" [stream]="'soundcloud'"></app-view-artist>
+  </div>
 
 <div class="resultContainer" *ngIf="currentSelected==='Tracks'"
 infinite-scroll
@@ -56,23 +59,35 @@ infinite-scroll
   [soundCloudTrack]="track"[index]="i"></app-track-search>
 </div>
 
-<div class="resultContainer" *ngIf="currentSelected==='Albums'" >
+<div class="resultContainer" *ngIf="currentSelected==='Albums'&& !spotifyAlbumSelected;" >
     <app-album-search *ngFor="let album of spotifyAlbums"
-    [spotifyAlbum]="album"></app-album-search>
+    [spotifyAlbum]="album" (selectedSpotifyAlbum)="setSpotifyAlbum($event)"></app-album-search>
 </div>
-<div class="resultContainer" *ngIf="currentSelected==='Albums'">
+<div class="resultContainer" *ngIf="currentSelected==='Albums' && spotifyAlbumSelected;">
+    <app-view-album [spotifyAlbum]="selectedSpotifyAlbum" (onBack)="spotifyAlbumReturned($event)" [stream]="'spotify'"></app-view-album>
+  </div>
+<div class="resultContainer" *ngIf="currentSelected==='Albums'&& !scAlbumSelected; ">
   <app-album-search *ngFor="let playlist of soundCloudAlbums"
-  [soundCloudPlaylist]="playlist"></app-album-search>
+  [soundCloudPlaylist]="playlist" (selectedscAlbum)="setscAlbum($event)"></app-album-search>
 </div>
+<div class="resultContainer" *ngIf="currentSelected==='Albums' && scAlbumSelected;">
+    <app-view-album [scPlaylist]="selectedscAlbum" (onBack)="scAlbumReturned($event)" [stream]="'soundcloud'"></app-view-album>
+  </div>
 
-<div class="resultContainer" *ngIf="currentSelected==='Playlists'" >
+<div class="resultContainer" *ngIf="currentSelected==='Playlists' && !spotifyPlaylistSelected" >
     <app-playlist-search *ngFor="let playlist of spotifyPlaylists"
-    [spotifyPlaylist]="playlist"></app-playlist-search>
+    [spotifyPlaylist]="playlist" (selectedSpotifyPlaylist)="setSpotifyPlaylist($event)"></app-playlist-search>
 </div>
-<div class="resultContainer" *ngIf="currentSelected==='Playlists'">
+<div class="resultContainer" *ngIf="currentSelected==='Playlists' && spotifyPlaylistSelected;">
+    <app-view-playlist [spotifyPlaylist]="selectedSpotifyPlaylist" (onBack)="spotifyPlaylistReturned($event)" [stream]="'spotify'"></app-view-playlist>
+  </div>
+<div class="resultContainer" *ngIf="currentSelected==='Playlists' && !scPlaylistSelected;">
   <app-playlist-search *ngFor="let playlist of soundCloudPlaylists"
-  [soundCloudPlaylist]="playlist"></app-playlist-search>
+  [soundCloudPlaylist]="playlist" (selectedscPlaylist)="setscPlaylist($event)"></app-playlist-search>
 </div>
+<div class="resultContainer" *ngIf="currentSelected==='Playlists' && scPlaylistSelected;">
+    <app-view-playlist [scPlaylist]="selectedscPlaylist" (onBack)="scPlaylistReturned($event)" [stream]="'soundcloud'"></app-view-playlist>
+  </div>
 
 
 <!-- <app-search-result ></app-search-result> -->

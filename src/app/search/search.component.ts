@@ -37,6 +37,16 @@ export class SearchComponent implements OnInit {
   scOffset: string;
   spotifyArtistSelected=false;
   selectedSpotifyArtist:artistResult;
+  scArtistSelected=false;
+  selectedSCArtist:soundcloudArtist;
+  spotifyAlbumSelected=false;
+  selectedSpotifyAlbum:spotifyAlbum;
+  scAlbumSelected=false;
+  selectedscAlbum:soundCloudPlaylist;
+  spotifyPlaylistSelected=false;
+  selectedSpotifyPlaylist:spotifyPlaylist;
+  scPlaylistSelected=false;
+  selectedscPlaylist:soundCloudPlaylist;
 
   // soundCloudArtists:artist
 
@@ -141,7 +151,7 @@ export class SearchComponent implements OnInit {
             } else if (res.artists) {
               this.artistResults = res.artists.items;
               // console.log('spotify'+res.artists.items);
-              console.log('before spotify component',JSON.stringify(res.artists.items[0],undefined,2));
+              // console.log('before spotify component',JSON.stringify(res.artists.items[0],undefined,2));
             } else if (res.albums) {
               this.spotifyAlbums = res.albums.items;
               // console.log('spotify'+res.albums.items);
@@ -164,7 +174,8 @@ export class SearchComponent implements OnInit {
             switch (c[i]) {
               case 'tracks':
                 this.soundCloudTracks = res.collection;
-                // this.player.updatescTracks(this.soundCloudTracks); console.log('before soundcloud component', JSON.stringify(res.collection[0], undefined, 2));
+                this.player.updatescTracks(this.soundCloudTracks);
+                // console.log('before soundcloud component', JSON.stringify(res.collection[0], undefined, 2));
                 this.scOffset = res.next_href;
                 break;
               case 'artists':
@@ -172,6 +183,7 @@ export class SearchComponent implements OnInit {
                 break;
               case 'albums':
                 this.soundCloudAlbums = res.collection;
+                // console.log('before soundcloud component', JSON.stringify(res.collection, undefined, 2));
                 break;
               case 'playlists':
                 this.soundCloudPlaylists = res.collection;
@@ -246,4 +258,55 @@ export class SearchComponent implements OnInit {
   artistReturned($event){
     this.spotifyArtistSelected=$event;
   }
+
+  setscArtist($event){
+    this.selectedSCArtist = $event;
+    console.log(this.selectedSCArtist.username);
+    this.scArtistSelected=true;
+  }
+
+  scArtistReturned($event){
+    this.scArtistSelected=$event;
+  }
+
+  setSpotifyAlbum($event){
+    this.selectedSpotifyAlbum=$event;
+    // console.log(this.selectedSpotifyArtist.name);
+    this.spotifyAlbumSelected=true;
+  }
+
+  setscAlbum($event){
+    this.selectedscAlbum = $event;
+    // console.log(this.selectedSCArtist.username);
+    this.scAlbumSelected=true;
+  }
+
+  spotifyAlbumReturned($event){
+    this.spotifyAlbumSelected=$event;
+  }
+
+  scAlbumReturned($event){
+    this.scAlbumSelected=$event;
+  }
+
+  setSpotifyPlaylist($event){
+    this.selectedSpotifyPlaylist=$event;
+    // console.log(this.selectedSpotifyArtist.name);
+    this.spotifyPlaylistSelected=true;
+  }
+
+  setscPlaylist($event){
+    this.selectedscPlaylist = $event;
+    // console.log(this.selectedSCArtist.username);
+    this.scPlaylistSelected=true;
+  }
+
+  spotifyPlaylistReturned($event){
+    this.spotifyPlaylistSelected=$event;
+  }
+
+  scPlaylistReturned($event){
+    this.scPlaylistSelected=$event;
+  }
+
 }

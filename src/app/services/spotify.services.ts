@@ -106,5 +106,22 @@ export class SpotifyService{
     return this._http.get(topUrl,{headers:headers}).pipe(map(res=>res.json()));
   }
 
+  getAlbumTracks(id:string){
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + localStorage.getItem('spotifyToken'));
+    console.log("spotifyservicestoken:" + localStorage.getItem('spotifyToken'));
+    let topUrl = this.baseUrl +'albums/'+id+'/tracks?limit=50';
+    return this._http.get(topUrl,{headers}).pipe(map(res=>res.json()));
+  }
+
+  getPlaylistTracks(id:string){
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + localStorage.getItem('spotifyToken'));
+    console.log("spotifyservicestoken:" + localStorage.getItem('spotifyToken'));
+    let topUrl = this.baseUrl +'playlists/'+id+'/tracks?limit=50';
+    return this._http.get(topUrl,{headers}).pipe(map(res=>res.json()));
+  }
+
+
 
 }

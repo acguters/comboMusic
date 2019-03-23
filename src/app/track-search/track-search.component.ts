@@ -1,3 +1,4 @@
+import { soundCloudTrack } from './../model/trackResults';
 // import { spotifyTrack } from './../model/trackResults';
 import { Component, OnInit, Input } from '@angular/core';
 import { spotifyTrack, soundCloudTrack } from '../model/trackResults';
@@ -15,6 +16,12 @@ declare var pauseSC:any;
   styleUrls: ['./track-search.component.css']
 })
 export class TrackSearchComponent implements OnInit {
+
+  @Input()
+  spotifyTracks:spotifyTrack[];
+
+  @Input()
+  soundCloudTracks:soundCloudTrack[];
 
   @Input()
   spotifyTrack:spotifyTrack;
@@ -74,7 +81,7 @@ export class TrackSearchComponent implements OnInit {
   }
 
   playSoundCloudTrack(){
-    // console.log('before soundcloud play: ' + this.currentStream);
+    console.log('before soundcloud play: ' + this.currentscTracks.length);
     if(this.currentStream==='spotify'){
       this.currentSpotifyTracks[this.prevIndex].isPlaying=false;
       this.service.updateSpotifyTracks(this.currentSpotifyTracks);

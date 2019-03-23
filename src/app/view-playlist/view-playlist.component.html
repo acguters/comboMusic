@@ -1,0 +1,56 @@
+<div class="searchContainer" *ngIf="stream==='spotify'">
+    <img src="../../assets/icons/go_back.png" class="goBack" (click)="goBack()">
+    <!-- <div class="imageContainer">
+      <img src="{{spotifyAlbum.images[0].url}}" class="image">
+    </div> -->
+    <!-- <div class="nameContainer">
+      <img src="../../assets/icons/spotify_icon.png" alt="" class="spotifyIcon">
+      <h2 class="name">{{spotifyAlbum.name}}</h2>
+    </div> -->
+
+    <h3 style="margin: 10px 0 10px 10px; color:white;">Top Tracks</h3>
+    <div class="topTracks">
+      <app-track-search *ngFor="let track of spotifyTracks;index as i;"
+    [spotifyTrack]="track" [index]="i">
+    </app-track-search>
+    </div>
+
+
+    <!-- <h3 style="margin: 10px 0 10px 10px; color:white;">Albums</h3>
+    <div style="overflow-x:scroll; white-space: nowrap;">
+      <app-album-search *ngFor="let album of spotifyAlbums; index as i;"
+        [spotifyAlbum]="album">
+      </app-album-search>
+    </div> -->
+  </div>
+
+  <div class="searchContainer" *ngIf="stream==='soundcloud'" style="background-color:white">
+      <img src="../../assets/icons/go_back.png" class="goBack" (click)="goBack()">
+      <!-- <div class="imageContainer">
+        <img src="{{scPlaylist.artwork_url}}" class="image">
+      </div> -->
+      <!-- <div class="nameContainer">
+        <img src="../../assets/icons/soundcloud_icon.png" alt="" class="spotifyIcon" style="width:50px;">
+        <h2 class="name" style="color:black;">{{scPlaylist.title}}</h2>
+      </div> -->
+
+      <h3 style="margin: 10px 0 10px 10px;">Top Tracks</h3>
+      <div class="topTracks">
+        <app-track-search *ngFor="let track of scTracks;index as i;"
+      [soundCloudTrack]="track" [index]="i">
+      </app-track-search>
+      </div>
+      <!-- <div class="noTracks" *ngIf="scTracks.length===0" >
+        <h4 class="noTracksH">This user has no tracks or tracks are unavailable due to soundcloud go</h4>
+      </div> -->
+
+
+      <!-- <h3 style="margin: 10px 0 10px 10px; ">Albums</h3>
+      <div style="overflow-x:scroll; white-space: nowrap;">
+        <app-album-search *ngFor="let playlist of scPlaylists; index as i;"
+          [soundCloudPlaylist]="playlist">
+        </app-album-search>
+      </div> -->
+    </div>
+
+

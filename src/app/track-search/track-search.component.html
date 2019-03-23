@@ -33,7 +33,7 @@
 </div>
 
 <div class="trackContainer" *ngIf="soundCloudTrack" (dblclick)="playSoundCloudTrack()"
-[style.background-color]="soundCloudTrack.isPlaying? '#ff7700' : '#191414'">
+[style.background-color]="soundCloudTrack.isPlaying? '#ff7700' : '#ffffff'">
     <!-- <div class="imageContainer"> -->
         <img src="{{soundCloudTrack.artwork_url}}" class="image"
       *ngIf="soundCloudTrack.artwork_url; else noImage">
@@ -45,7 +45,7 @@
     <!-- </div> -->
     <div class="detailsContainer">
       <div class="topDetails">
-        <h4 style="margin-top:10px;padding:0;color:white;">{{soundCloudTrack.title}} : {{soundCloudTrack.user.username}}</h4>
+        <h4 style="margin-top:10px;padding:0;color:black;">{{soundCloudTrack.title}} : {{soundCloudTrack.user.username}}</h4>
         <!-- <div class="details" style="background-color:#262627" *ngIf="spotifyTrack.explicit" >
             <p class="innerdetails">Explicit</p>
         </div> -->

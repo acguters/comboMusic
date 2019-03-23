@@ -23,7 +23,7 @@ export class SoundcloudServices{
       return this.request({
         paginate:true,
         query:'q='+str,
-        url:this.baseUrl+'/'+type
+        url:this.proxyurl+this.baseUrl+'/'+type
       })
   }
 
@@ -65,6 +65,11 @@ export class SoundcloudServices{
 
   getMoreSCTracks(path:string){
     var url = path+'&limit=30&linked_partitioning=1'
+    return this._http.get(url).pipe(map(res=>res.json()));
+  }
+
+  getUserTracks(userid:string){
+    var url = this.baseUrl+'/users/'+userid+'/tracks?client_id='+this.clientId;
     return this._http.get(url).pipe(map(res=>res.json()));
   }
 

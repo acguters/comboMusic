@@ -22,6 +22,8 @@ import { YourSongsComponent } from '../your-songs/your-songs.component';
 import { SoundcloudServices } from '../services/soundcloud.services';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ViewArtistComponent } from '../view-artist/view-artist.component';
+import { ViewAlbumComponent } from '../view-album/view-album.component';
+import { ViewPlaylistComponent } from '../view-playlist/view-playlist.component';
 // import {playerService}
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ViewArtistComponent } from '../view-artist/view-artist.component';
     PlaylistSearchComponent,
     PlayerComponent,
     YourSongsComponent,
-    ViewArtistComponent
+    ViewArtistComponent,
+    ViewAlbumComponent,
+    ViewPlaylistComponent
   ],
   imports: [
     BrowserModule,

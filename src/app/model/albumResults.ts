@@ -23,4 +23,5 @@ export interface soundCloudPlaylist{
   reposts_count:number;
   tracks_uri:string;
   artwork_url:string;
+  title:string;
 }
